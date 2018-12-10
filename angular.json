@@ -99,6 +99,38 @@
               "**/node_modules/**"
             ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/shell-error-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "shell-error:build",
+            "serverTarget": "shell-error:server",
+            "route": "shell"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shell-error:build:production",
+              "serverTarget": "shell-error:server:production"
+            }
+          }
         }
       }
     },
